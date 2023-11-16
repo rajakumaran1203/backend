@@ -14,6 +14,7 @@ const email_controller_1 = require("./email/email.controller");
 const email_service_1 = require("./email/email.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const email_schema_1 = require("./email/email.schema");
+const template_module_1 = require("./template/template.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -22,6 +23,7 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             mongoose_1.MongooseModule.forRoot('mongodb://localhost:27017/email_data'),
             mongoose_1.MongooseModule.forFeature([{ name: 'Email', schema: email_schema_1.EmailSchema }]),
+            template_module_1.TemplateModule,
         ],
         controllers: [app_controller_1.AppController, email_controller_1.EmailController],
         providers: [app_service_1.AppService, email_service_1.EmailService],

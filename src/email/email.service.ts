@@ -15,7 +15,7 @@ export class EmailService {
           service: 'gmail',
           auth: {
             user: 'rajakumarandevloper@gmail.com',
-            pass: '',
+            pass: 'grmwpcokgoqgamht',
           },
         });
       }

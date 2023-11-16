@@ -23,14 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Document } from 'mongoose';
-export declare class Email extends Document {
-    to: string;
+export declare class Template extends Document {
+    name: string;
     subject: string;
-    text: string;
-    sentAt: Date;
+    body: string;
 }
-export declare const EmailSchema: import("mongoose").Schema<Email, import("mongoose").Model<Email, any, any, any, Document<unknown, any, Email> & Email & {
+export declare const TemplateSchema: import("mongoose").Schema<Template, import("mongoose").Model<Template, any, any, any, Document<unknown, any, Template> & Template & {
     _id: import("mongoose").Types.ObjectId;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Email, Document<unknown, {}, import("mongoose").FlatRecord<Email>> & import("mongoose").FlatRecord<Email> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Template, Document<unknown, {}, import("mongoose").FlatRecord<Template>> & import("mongoose").FlatRecord<Template> & {
     _id: import("mongoose").Types.ObjectId;
 }>;

@@ -5,12 +5,13 @@ import { EmailController } from './email/email.controller';
 import { EmailService } from './email/email.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EmailSchema } from './email/email.schema';
-
+import { TemplateModule } from './template/template.module';
 
 @Module({
   imports: [    
     MongooseModule.forRoot('mongodb://localhost:27017/email_data',),
     MongooseModule.forFeature([{ name: 'Email', schema: EmailSchema }]),
+    TemplateModule,
 ],
   controllers: [AppController, EmailController],
   providers: [AppService, EmailService],

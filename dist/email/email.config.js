@@ -7,7 +7,7 @@ exports.emailConfig = {
     secure: true,
     auth: {
         user: 'gokulsidharth02@gmail.com',
-        pass: 'lygqxpgxakytobcp'
+        pass: ''
     },
     tls: {
         rejectUnauthorized: false

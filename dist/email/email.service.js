@@ -24,7 +24,7 @@ let EmailService = class EmailService {
             service: 'gmail',
             auth: {
                 user: 'rajakumarandevloper@gmail.com',
-                pass: 'xpnwdtgqalpwhrdz',
+                pass: 'grmwpcokgoqgamht',
             },
         });
     }

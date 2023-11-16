@@ -8,31 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmailSchema = exports.Email = void 0;
+exports.TemplateService = void 0;
+const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-let Email = class Email extends mongoose_2.Document {
+let TemplateService = class TemplateService {
+    constructor(templateModel) {
+        this.templateModel = templateModel;
+    }
+    async findAll() {
+        return this.templateModel.find().exec();
+    }
 };
-exports.Email = Email;
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Email.prototype, "to", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Email.prototype, "subject", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Email.prototype, "text", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Date)
-], Email.prototype, "sentAt", void 0);
-exports.Email = Email = __decorate([
-    (0, mongoose_1.Schema)()
-], Email);
-exports.EmailSchema = mongoose_1.SchemaFactory.createForClass(Email);
-//# sourceMappingURL=email.schema.js.map
+exports.TemplateService = TemplateService;
+exports.TemplateService = TemplateService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, mongoose_1.InjectModel)('Template')),
+    __metadata("design:paramtypes", [mongoose_2.Model])
+], TemplateService);
+//# sourceMappingURL=template.service.js.map
