@@ -58,11 +58,14 @@ let EmailService = class EmailService {
             console.log(info.response);
         });
     }
+    async findAll() {
+        return this.emailModel.find().exec();
+    }
 };
-exports.EmailService = EmailService;
-exports.EmailService = EmailService = __decorate([
+EmailService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('Email')),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], EmailService);
+exports.EmailService = EmailService;
 //# sourceMappingURL=email.service.js.map

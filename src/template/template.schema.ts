@@ -10,7 +10,7 @@ export class Template extends Document {
   subject: string;
 
   @Prop()
-  body: string;
+  description: string;
 }
 
 export const TemplateSchema = SchemaFactory.createForClass(Template);

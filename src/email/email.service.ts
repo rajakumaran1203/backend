@@ -55,4 +55,8 @@ export class EmailService {
             console.log(info.response)
         })
     }
+    async findAll(): Promise<Email[]> {
+      return this.emailModel.find().exec();
+    }
 }
+

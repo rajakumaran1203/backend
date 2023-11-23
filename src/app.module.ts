@@ -1,19 +1,26 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { EmailController } from './email/email.controller';
-import { EmailService } from './email/email.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { EmailSchema } from './email/email.schema';
-import { TemplateModule } from './template/template.module';
+import { BookModule } from './book/book.module';
+import { AuthModule } from './auth/auth.module';
+import {TemplateModule} from './template/template.module';
+import {EmailModule} from './email/email.module';
 
 @Module({
-  imports: [    
-    MongooseModule.forRoot('mongodb://localhost:27017/email_data',),
-    MongooseModule.forFeature([{ name: 'Email', schema: EmailSchema }]),
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.DB_URI),
+    BookModule,
+    AuthModule,
     TemplateModule,
-],
-  controllers: [AppController, EmailController],
-  providers: [AppService, EmailService],
+    EmailModule
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

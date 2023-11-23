@@ -29,8 +29,4 @@ export declare class Email extends Document {
     text: string;
     sentAt: Date;
 }
-export declare const EmailSchema: import("mongoose").Schema<Email, import("mongoose").Model<Email, any, any, any, Document<unknown, any, Email> & Email & {
-    _id: import("mongoose").Types.ObjectId;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Email, Document<unknown, {}, import("mongoose").FlatRecord<Email>> & import("mongoose").FlatRecord<Email> & {
-    _id: import("mongoose").Types.ObjectId;
-}>;
+export declare const EmailSchema: import("mongoose").Schema<Email, import("mongoose").Model<Email, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Email>;

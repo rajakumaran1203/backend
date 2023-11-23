@@ -14,7 +14,6 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let Email = class Email extends mongoose_2.Document {
 };
-exports.Email = Email;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -31,8 +30,9 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
 ], Email.prototype, "sentAt", void 0);
-exports.Email = Email = __decorate([
+Email = __decorate([
     (0, mongoose_1.Schema)()
 ], Email);
+exports.Email = Email;
 exports.EmailSchema = mongoose_1.SchemaFactory.createForClass(Email);
 //# sourceMappingURL=email.schema.js.map

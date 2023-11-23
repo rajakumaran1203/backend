@@ -23,11 +23,15 @@ let TemplateService = class TemplateService {
     async findAll() {
         return this.templateModel.find().exec();
     }
+    async create(templateData) {
+        const createdTemplate = new this.templateModel(templateData);
+        return createdTemplate.save();
+    }
 };
-exports.TemplateService = TemplateService;
-exports.TemplateService = TemplateService = __decorate([
+TemplateService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('Template')),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], TemplateService);
+exports.TemplateService = TemplateService;
 //# sourceMappingURL=template.service.js.map

@@ -14,7 +14,6 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let Template = class Template extends mongoose_2.Document {
 };
-exports.Template = Template;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -26,9 +25,10 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Template.prototype, "body", void 0);
-exports.Template = Template = __decorate([
+], Template.prototype, "description", void 0);
+Template = __decorate([
     (0, mongoose_1.Schema)()
 ], Template);
+exports.Template = Template;
 exports.TemplateSchema = mongoose_1.SchemaFactory.createForClass(Template);
 //# sourceMappingURL=template.schema.js.map

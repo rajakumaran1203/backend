@@ -19,8 +19,9 @@ let EmailController = class EmailController {
     constructor(emailService) {
         this.emailService = emailService;
     }
-    getEmail() {
-        return 'all emails here';
+    async getAllTemplates() {
+        const emails = await this.emailService.findAll();
+        return emails;
     }
     async sendEmail(formData) {
         const { to, subject, body } = formData;
@@ -33,13 +34,12 @@ let EmailController = class EmailController {
         }
     }
 };
-exports.EmailController = EmailController;
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Object)
-], EmailController.prototype, "getEmail", null);
+    __metadata("design:returntype", Promise)
+], EmailController.prototype, "getAllTemplates", null);
 __decorate([
     (0, common_1.Post)('send-email'),
     __param(0, (0, common_1.Body)()),
@@ -47,8 +47,9 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], EmailController.prototype, "sendEmail", null);
-exports.EmailController = EmailController = __decorate([
+EmailController = __decorate([
     (0, common_1.Controller)('email'),
     __metadata("design:paramtypes", [email_service_1.EmailService])
 ], EmailController);
+exports.EmailController = EmailController;
 //# sourceMappingURL=email.controller.js.map

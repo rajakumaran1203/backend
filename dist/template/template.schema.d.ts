@@ -26,10 +26,6 @@ import { Document } from 'mongoose';
 export declare class Template extends Document {
     name: string;
     subject: string;
-    body: string;
+    description: string;
 }
-export declare const TemplateSchema: import("mongoose").Schema<Template, import("mongoose").Model<Template, any, any, any, Document<unknown, any, Template> & Template & {
-    _id: import("mongoose").Types.ObjectId;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Template, Document<unknown, {}, import("mongoose").FlatRecord<Template>> & import("mongoose").FlatRecord<Template> & {
-    _id: import("mongoose").Types.ObjectId;
-}>;
+export declare const TemplateSchema: import("mongoose").Schema<Template, import("mongoose").Model<Template, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Template>;

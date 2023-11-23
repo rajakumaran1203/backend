@@ -14,12 +14,12 @@ const template_service_1 = require("./template.service");
 const template_schema_1 = require("./template.schema");
 let TemplateModule = class TemplateModule {
 };
-exports.TemplateModule = TemplateModule;
-exports.TemplateModule = TemplateModule = __decorate([
+TemplateModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Template', schema: template_schema_1.TemplateSchema }])],
         controllers: [template_controller_1.TemplateController],
         providers: [template_service_1.TemplateService],
     })
 ], TemplateModule);
+exports.TemplateModule = TemplateModule;
 //# sourceMappingURL=template.module.js.map

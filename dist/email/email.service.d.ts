@@ -5,4 +5,5 @@ export declare class EmailService {
     private transporter;
     constructor(emailModel: Model<Email>);
     sendEmail(to: string, subject: string, text: string): Promise<void>;
+    findAll(): Promise<Email[]>;
 }

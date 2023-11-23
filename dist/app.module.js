@@ -8,25 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
+const mongoose_1 = require("@nestjs/mongoose");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const email_controller_1 = require("./email/email.controller");
-const email_service_1 = require("./email/email.service");
-const mongoose_1 = require("@nestjs/mongoose");
-const email_schema_1 = require("./email/email.schema");
+const book_module_1 = require("./book/book.module");
+const auth_module_1 = require("./auth/auth.module");
 const template_module_1 = require("./template/template.module");
+const email_module_1 = require("./email/email.module");
 let AppModule = class AppModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forRoot('mongodb://localhost:27017/email_data'),
-            mongoose_1.MongooseModule.forFeature([{ name: 'Email', schema: email_schema_1.EmailSchema }]),
+            config_1.ConfigModule.forRoot({
+                envFilePath: '.env',
+                isGlobal: true,
+            }),
+            mongoose_1.MongooseModule.forRoot(process.env.DB_URI),
+            book_module_1.BookModule,
+            auth_module_1.AuthModule,
             template_module_1.TemplateModule,
+            email_module_1.EmailModule
         ],
-        controllers: [app_controller_1.AppController, email_controller_1.EmailController],
-        providers: [app_service_1.AppService, email_service_1.EmailService],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
+exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

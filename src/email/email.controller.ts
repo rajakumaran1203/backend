@@ -8,9 +8,14 @@ export class EmailController {
     constructor(private readonly emailService : EmailService) {}
 
 
+    // @Get()
+    // getEmail(): any {
+    //     return 'all emails here'
+    // }
     @Get()
-    getEmail(): any {
-        return 'all emails here'
+    async getAllTemplates() {
+      const emails = await this.emailService.findAll();
+      return emails;
     }
     
     @Post('send-email')
