@@ -14,8 +14,8 @@ export class EmailService {
           // Configure your email provider here
           service: 'gmail',
           auth: {
-            user: 'rajakumarandevloper@gmail.com',
-            pass: 'grmwpcokgoqgamht',
+            user: '',
+            pass: '',
           },
         });
       }
