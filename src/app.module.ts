@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import {TemplateModule} from './template/template.module';
 import {EmailModule} from './email/email.module';
+import {GraphModule} from './graph/graph.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import {EmailModule} from './email/email.module';
     MongooseModule.forRoot(process.env.DB_URI),
     AuthModule,
     TemplateModule,
-    EmailModule
+    EmailModule,
+    GraphModule
   ],
   controllers: [AppController],
   providers: [AppService],
