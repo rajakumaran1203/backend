@@ -4,8 +4,8 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Email extends Document {
-  @Prop()
-  to: string;
+  @Prop([String])
+  to: string[];
 
   @Prop()
   subject: string;

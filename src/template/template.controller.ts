@@ -22,10 +22,11 @@ export class TemplateController {
     const templates = await this.templateService.findAll();
     return templates;
   }
-
+  
   @Post('create')
   async createTemplate(@Body() templateData: { name: string; subject: string; description: string }) {
     const createdTemplate = await this.templateService.create(templateData);
     return createdTemplate;
   }
 }
+

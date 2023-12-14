@@ -3,7 +3,7 @@ export const emailConfig = {
     port:465,
     secure:true,
     auth:{
-        user: 'gokulsidharth02@gmail.com',
+        user: '@gmail.com',
         pass: ''
     },
     tls: {
