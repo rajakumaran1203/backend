@@ -4,6 +4,9 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Email extends Document {
+  @Prop()
+  from: string;
+  
   @Prop([String])
   to: string[];
 

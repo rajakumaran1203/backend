@@ -52,6 +52,16 @@ export class EmailService {
       try {
         // Send email using nodemailer for each recipient
         await this.transporter.sendMail(mailOptions);
+        console.log(`Email sent to ${recipient}:`, info.response);
+        const email = new this.emailModel({
+          from: process.env.EMAIL_USER,
+          to: [recipient],
+          subject,
+          text,
+          sentAt: new Date(),
+        });
+        await email.save();
+
       } catch (error) {
         console.error(`Error sending email to ${recipient}:`, error);
       }
