@@ -8,3 +8,11 @@ export declare class EmailController {
         message: string;
     }>;
 }
+export declare class EmailListController {
+    private readonly emailService;
+    constructor(emailService: EmailService);
+    getEmails(): Promise<{
+        value: string;
+        label: string;
+    }[]>;
+}

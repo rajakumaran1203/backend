@@ -24,7 +24,8 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Document } from 'mongoose';
 export declare class Email extends Document {
-    to: string;
+    from: string;
+    to: string[];
     subject: string;
     text: string;
     sentAt: Date;

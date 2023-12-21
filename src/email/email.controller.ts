@@ -2,8 +2,6 @@ import { Controller , Post ,Get, Body} from "@nestjs/common";
 import { EmailService } from "./email.service";
 
 
-
-
 @Controller('email')
 export class EmailController {
     constructor(private readonly emailService : EmailService) {}
@@ -16,10 +14,10 @@ export class EmailController {
     
     @Post('send-email')
     async sendEmail(@Body() formData:any ) {
-        const {to, subject, body} = formData 
+        const {to, subject, text} = formData 
 
         try{
-            await this.emailService.sendEmail(to, subject, body);
+            await this.emailService.sendEmail(to, subject, text);
             return 'successfully sent !'
         } catch (error) {
             return {success: false ,message : 'failed to send email'}

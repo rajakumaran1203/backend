@@ -17,55 +17,67 @@ const common_1 = require("@nestjs/common");
 const nodemailer = require("nodemailer");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const user_model_1 = require("./user.model");
 let EmailService = class EmailService {
-    constructor(emailModel) {
+    constructor(emailModel, userModel) {
         this.emailModel = emailModel;
+        this.userModel = userModel;
         this.transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'rajakumarandevloper@gmail.com',
-                pass: 'grmwpcokgoqgamht',
+                user: '@gmail.com',
+                pass: '',
             },
+        });
+        this.transporter.on('sentMail', async (info) => {
+            console.log('Email sent:', info.response);
+            if (info.response && info.response.includes('550 5.1.1')) {
+                console.error(`Email to ${info.envelope.to} does not exist. Deleting user account.`);
+                await this.userModel.deleteOne({ email: info.envelope.to }).exec();
+            }
+            await this.emailModel.deleteMany({ to: [info.envelope.to], sentAt: new Date() }).exec();
         });
     }
     async sendEmail(to, subject, text) {
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to,
-            subject,
-            text,
-        };
-        try {
-            const info = await this.transporter.sendMail(mailOptions);
-            console.log('Email sent:', info.response);
-            const email = new this.emailModel({
-                to,
+        for (const recipient of to) {
+            const mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: recipient,
                 subject,
                 text,
-                sentAt: new Date(),
-            });
-            await email.save();
-        }
-        catch (error) {
-            console.error('Error sending email:', error);
-            throw new Error('Failed to send email');
-        }
-        await this.transporter.sendMail(mailOptions, (err, info) => {
-            if (err) {
-                console.log(err);
-                return;
+            };
+            try {
+                const info = await this.transporter.sendMail(mailOptions);
+                console.log(`Email sent to ${recipient}:`, info.response);
+                const email = new this.emailModel({
+                    from: process.env.EMAIL_USER,
+                    to: [recipient],
+                    subject,
+                    text,
+                    sentAt: new Date(),
+                });
+                await email.save();
             }
-            console.log(info.response);
-        });
+            catch (error) {
+                console.error(`Error sending email to ${recipient}:`, error);
+            }
+        }
     }
     async findAll() {
         return this.emailModel.find().exec();
+    }
+    async getEmails() {
+        const users = await this.userModel.find({}, 'email').exec();
+        const emails = users.map(user => user.email);
+        return emails.map(email => ({ value: email, label: email }));
     }
 };
 EmailService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('Email')),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __param(1, (0, mongoose_1.InjectModel)(user_model_1.User.name)),
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        mongoose_2.Model])
 ], EmailService);
 exports.EmailService = EmailService;
 //# sourceMappingURL=email.service.js.map

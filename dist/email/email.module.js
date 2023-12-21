@@ -12,12 +12,14 @@ const mongoose_1 = require("@nestjs/mongoose");
 const email_controller_1 = require("./email.controller");
 const email_service_1 = require("./email.service");
 const email_schema_1 = require("./email.schema");
+const user_model_1 = require("./user.model");
 let EmailModule = class EmailModule {
 };
 EmailModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Email', schema: email_schema_1.EmailSchema }])],
-        controllers: [email_controller_1.EmailController],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Email', schema: email_schema_1.EmailSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: user_model_1.UserModel }]),],
+        controllers: [email_controller_1.EmailController, email_controller_1.EmailListController],
         providers: [email_service_1.EmailService],
     })
 ], EmailModule);

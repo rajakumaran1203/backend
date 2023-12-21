@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import {TemplateModule} from './template/template.module';
 import {EmailModule} from './email/email.module';
 import {GraphModule} from './graph/graph.module';
+import {UserModule} from './user/user.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import {GraphModule} from './graph/graph.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DB_URI),
+    UserModule,
     BookModule,
     AuthModule,
     TemplateModule,

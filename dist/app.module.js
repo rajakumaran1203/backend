@@ -16,6 +16,8 @@ const book_module_1 = require("./book/book.module");
 const auth_module_1 = require("./auth/auth.module");
 const template_module_1 = require("./template/template.module");
 const email_module_1 = require("./email/email.module");
+const graph_module_1 = require("./graph/graph.module");
+const user_module_1 = require("./user/user.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -26,10 +28,12 @@ AppModule = __decorate([
                 isGlobal: true,
             }),
             mongoose_1.MongooseModule.forRoot(process.env.DB_URI),
+            user_module_1.UserModule,
             book_module_1.BookModule,
             auth_module_1.AuthModule,
             template_module_1.TemplateModule,
-            email_module_1.EmailModule
+            email_module_1.EmailModule,
+            graph_module_1.GraphModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

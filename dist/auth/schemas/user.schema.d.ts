@@ -24,7 +24,8 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Document } from 'mongoose';
 export declare class User extends Document {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
 }

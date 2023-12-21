@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmailController = void 0;
+exports.EmailListController = exports.EmailController = void 0;
 const common_1 = require("@nestjs/common");
 const email_service_1 = require("./email.service");
 let EmailController = class EmailController {
@@ -24,9 +24,9 @@ let EmailController = class EmailController {
         return emails;
     }
     async sendEmail(formData) {
-        const { to, subject, body } = formData;
+        const { to, subject, text } = formData;
         try {
-            await this.emailService.sendEmail(to, subject, body);
+            await this.emailService.sendEmail(to, subject, text);
             return 'successfully sent !';
         }
         catch (error) {
@@ -52,4 +52,23 @@ EmailController = __decorate([
     __metadata("design:paramtypes", [email_service_1.EmailService])
 ], EmailController);
 exports.EmailController = EmailController;
+let EmailListController = class EmailListController {
+    constructor(emailService) {
+        this.emailService = emailService;
+    }
+    async getEmails() {
+        return this.emailService.getEmails();
+    }
+};
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], EmailListController.prototype, "getEmails", null);
+EmailListController = __decorate([
+    (0, common_1.Controller)('emaillists'),
+    __metadata("design:paramtypes", [email_service_1.EmailService])
+], EmailListController);
+exports.EmailListController = EmailListController;
 //# sourceMappingURL=email.controller.js.map

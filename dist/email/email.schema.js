@@ -17,6 +17,10 @@ let Email = class Email extends mongoose_2.Document {
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
+], Email.prototype, "from", void 0);
+__decorate([
+    (0, mongoose_1.Prop)([String]),
+    __metadata("design:type", Array)
 ], Email.prototype, "to", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),

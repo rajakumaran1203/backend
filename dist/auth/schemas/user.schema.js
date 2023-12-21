@@ -17,7 +17,11 @@ let User = class User extends mongoose_2.Document {
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
+], User.prototype, "firstName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], User.prototype, "lastName", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ unique: [true, 'Duplicate email entered'] }),
     __metadata("design:type", String)

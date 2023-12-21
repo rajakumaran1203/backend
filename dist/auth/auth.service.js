@@ -25,10 +25,11 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async signUp(signUpDto) {
-        const { name, email, password } = signUpDto;
+        const { firstName, lastName, email, password } = signUpDto;
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await this.userModel.create({
-            name,
+            firstName,
+            lastName,
             email,
             password: hashedPassword,
         });
