@@ -10,7 +10,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin: 'https://658457de17dc8b0009b0e24c--friendly-halva-89d6cc.netlify.app/',
     credentials: true,
   });
   const port = 3000;
