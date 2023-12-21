@@ -10,7 +10,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
-    origin: 'https://master--friendly-halva-89d6cc.netlify.app/',
+    origin: '*',
     credentials: true,
   });
   
