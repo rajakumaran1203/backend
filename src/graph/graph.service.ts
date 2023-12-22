@@ -5,7 +5,7 @@ import {User} from './graph.model';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(@InjectModel('user') private readonly userModel: Model<User>) {}
 
   async getUserCreationData(): Promise<any[]> {
     const userCreationDates = await this.userModel.find({}, 'createdAt').exec();

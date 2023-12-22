@@ -7,7 +7,7 @@ import { UserService } from './graph.service';
 import { User, UserSchema } from './graph.model';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
+  imports: [MongooseModule.forFeature([{ name: 'user', schema: UserSchema }])],
   controllers: [UserController],
   providers: [UserService],
 })
