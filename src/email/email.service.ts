@@ -6,6 +6,7 @@ import { Model } from 'mongoose';
 import { Email } from './email.schema';
 import { User } from './user.model';
 
+
 @Injectable()
 export class EmailService {
   private transporter;
@@ -15,53 +16,43 @@ export class EmailService {
     @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {
     this.transporter = nodemailer.createTransport({
-      // Configure your email provider here
-      service: 'gmail',
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
-        user: '@gmail.com',
-        pass: '',
-      },
-    });
-
-    // Register the sentMail event listener
-    this.transporter.on('sentMail', async (info) => {
-      console.log('Email sent:', info.response);
-
-      // Handle the removal based on the email response
-      if (info.response && info.response.includes('550 5.1.1')) {
-        console.error(`Email to ${info.envelope.to} does not exist. Deleting user account.`);
-
-        // Remove the user account from MongoDB based on the email address
-        await this.userModel.deleteOne({ email: info.envelope.to }).exec();
-      }
-
-      // Remove the email from MongoDB
-      await this.emailModel.deleteMany({ to: [info.envelope.to], sentAt: new Date() }).exec();
+        type: "OAuth2",
+        user: "rajakumarandevloper@gmail.com",
+        clientId: "828057784769-aplbedrfjfqqo8tnuoohdsdfl7te33ip.apps.googleusercontent.com",
+        clientSecret: "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",
+        refreshToken: "1//04megLYWIry7xCgYIARAAGAQSNwF-L9IrF6hwiOQqV8f7E3ccOvv8lhUp4XaRTQpwZo_AY_VIuzJgytz6_IoH-sNM5ckmUxTo1vc",
+        accessToken: "ya29.a0AfB_byBxBaWLqydpG-sW7L3yD2cMkXTF4E61QxFVWlzQ1wHnwxDeh1FlLCcEsJgMozacJ9Mp-_fEYism4JIGoAtpyi1xJ5WAwBoSfLABplAVtl7SDvS6L6r3-UI20f0C3Qw71XN3lVvUR0AY-RJ5Bm34K2PYl-Fm3bBDaCgYKAawSARASFQHGX2Mi9zo0rK3btsfKGGYYKf8gDA0171",
+        expires: 3599,
+      },  
     });
   }
+  
 
   async sendEmail(to: string[], subject: string, text: string): Promise<void> {
     for (const recipient of to) {
       const mailOptions = {
-        from: process.env.EMAIL_USER,
+        from: "rajakumarandevloper@gmail.com",
         to: recipient,
         subject,
         text,
       };
 
       try {
-        // Send email using nodemailer for each recipient
         const info = await this.transporter.sendMail(mailOptions);
-        console.log(`Email sent to ${recipient}:`, info.response);
+        console.log('Email sent:', info);
+
         const email = new this.emailModel({
-          from: process.env.EMAIL_USER,
+          from: "rajakumarandevloper@gmail.com",
           to: [recipient],
           subject,
           text,
           sentAt: new Date(),
         });
         await email.save();
-
       } catch (error) {
         console.error(`Error sending email to ${recipient}:`, error);
       }
