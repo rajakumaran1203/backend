@@ -36,11 +36,8 @@ export class EmailInboxService {
             });
 
             f.on('message', (msg, seqno) => {
-              console.log('Message #%d', seqno);
               const prefix = '(#' + seqno + ') ';
-
               const email: any = {};
-
               msg.on('body', (stream, info) => {
                 let buffer = '';
                 stream.on('data', (chunk) => {
@@ -66,7 +63,6 @@ export class EmailInboxService {
               });
 
               msg.once('end', () => {
-                console.log(prefix + 'Finished');
                 emails.push(email);
               });
             });
@@ -76,7 +72,6 @@ export class EmailInboxService {
             });
 
             f.once('end', () => {
-              console.log('Done fetching all messages!');
               this.imap.end();
               this.updateEmailStats('rajakumarandevloper@gmail.com', totalMessages, failureCount);
               resolve({ emails, totalMessages, failureCount });
