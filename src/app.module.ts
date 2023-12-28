@@ -7,7 +7,6 @@ import {TemplateModule} from './template/template.module';
 import {EmailModule} from './email/email.module';
 import {GraphModule} from './graph/graph.module';
 import {UserModule} from './user/user.module';
-import {EmailInboxModule} from './email_inbox/email.module';
 
 @Module({
   imports: [
@@ -16,7 +15,6 @@ import {EmailInboxModule} from './email_inbox/email.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DB_URI),
-    EmailInboxModule,
     UserModule,
     TemplateModule,
     EmailModule,
