@@ -16,7 +16,7 @@ let GraphModule = class GraphModule {
 };
 GraphModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: graph_model_1.UserSchema }])],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'user', schema: graph_model_1.UserSchema }])],
         controllers: [graph_controller_1.UserController],
         providers: [graph_service_1.UserService],
     })

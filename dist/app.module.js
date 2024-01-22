@@ -12,12 +12,11 @@ const config_1 = require("@nestjs/config");
 const mongoose_1 = require("@nestjs/mongoose");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const book_module_1 = require("./book/book.module");
-const auth_module_1 = require("./auth/auth.module");
 const template_module_1 = require("./template/template.module");
 const email_module_1 = require("./email/email.module");
 const graph_module_1 = require("./graph/graph.module");
 const user_module_1 = require("./user/user.module");
+const email_module_2 = require("./email_inbox/email.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -28,9 +27,8 @@ AppModule = __decorate([
                 isGlobal: true,
             }),
             mongoose_1.MongooseModule.forRoot(process.env.DB_URI),
+            email_module_2.EmailInboxModule,
             user_module_1.UserModule,
-            book_module_1.BookModule,
-            auth_module_1.AuthModule,
             template_module_1.TemplateModule,
             email_module_1.EmailModule,
             graph_module_1.GraphModule
