@@ -30,3 +30,4 @@ import { CampaignModule } from './email_campaign1/campaign.module';
   providers: [AppService],
 })
 export class AppModule {}
+
