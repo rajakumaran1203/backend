@@ -227,7 +227,7 @@ export class EmailInboxService {
     }
   }
 
-  @Cron('17 19 * * *') // Run at 6:40 PM every day
+  @Cron('30 21 * * *') // Run at 6:40 PM every day
   async sendEmails(totalWarmUpEmailsPerDay: number): Promise<void> {
     try {
       const useremail: string[] = [];
