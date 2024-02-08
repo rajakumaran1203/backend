@@ -1,14 +1,10 @@
-// email.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
-export class Email extends Document {
+export class ScheduledFollowup extends Document {
   @Prop()
-  from: string;
-  
-  @Prop([String])
-  to: string[];
+  index: number;
 
   @Prop()
   subject: string;
@@ -17,7 +13,7 @@ export class Email extends Document {
   description: string;
 
   @Prop()
-  sentAt: Date;
+  scheduledAt: string;
 }
 
-export const EmailSchema = SchemaFactory.createForClass(Email);
+export const ScheduledFollowupSchema = SchemaFactory.createForClass(ScheduledFollowup);

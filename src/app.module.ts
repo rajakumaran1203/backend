@@ -10,6 +10,7 @@ import {UserModule} from './user/user.module';
 import {EmailInboxModule} from './email_inbox/email.module';
 import {CsvModule} from './upload_file/csv.module';
 import { CampaignModule } from './email_campaign1/campaign.module';
+import { CampaignModule1 } from './email_campaign2/campaign.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CampaignModule } from './email_campaign1/campaign.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DB_URI),
+    CampaignModule1,
     CampaignModule,
     CsvModule,
     EmailInboxModule,
